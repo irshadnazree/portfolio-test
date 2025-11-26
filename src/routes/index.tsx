@@ -24,6 +24,12 @@ function App() {
 				>
 					combo
 				</Link>
+				<Link
+					className="bg-blue-400 text-white p-2 rounded w-20 text-center"
+					to="/test/api/tests"
+				>
+					api
+				</Link>
 			</div>
 		</div>
 	);

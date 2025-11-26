@@ -1,7 +1,9 @@
 export default function FormComponent({
 	onSubmit,
+	isLoading = false,
 }: {
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+	isLoading?: boolean;
 }) {
 	return (
 		<form onSubmit={onSubmit} className="flex flex-col gap-2 mt-10">
@@ -17,9 +19,12 @@ export default function FormComponent({
 			/>
 			<button
 				type="submit"
-				className="bg-blue-400 text-white p-2 cursor-pointer"
+				disabled={isLoading}
+				className={`bg-blue-400 text-white p-2 ${
+					isLoading ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+				}`}
 			>
-				Submit
+				{isLoading ? "Submitting..." : "Submit"}
 			</button>
 		</form>
 	);
