@@ -1,21 +1,30 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({ component: App });
+export const Route = createFileRoute("/")({ component: App });
 
 function App() {
-  return (
-    <div>
-      <form action='submit'>
-        <input type='text' name='name' className='ring-2 ring-gray-300 p-1' />
-        <button
-          type='submit'
-          className='bg-blue-500 text-white p-2 cursor-pointer'
-        >
-          Submit
-        </button>
-      </form>
-
-      <div></div>
-    </div>
-  );
+	return (
+		<div className="mx-auto max-w-md mt-10">
+			<div className="flex gap-2 flex-col items-center">
+				<Link
+					className="bg-blue-400 text-white p-2 rounded w-20 text-center"
+					to="/test"
+				>
+					index
+				</Link>
+				<Link
+					className="bg-blue-400 text-white p-2 rounded w-20 text-center"
+					to="/test/input"
+				>
+					input
+				</Link>
+				<Link
+					className="bg-blue-400 text-white p-2 rounded w-20 text-center"
+					to="/test/combo"
+				>
+					combo
+				</Link>
+			</div>
+		</div>
+	);
 }

@@ -10,33 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TestIndexRouteImport } from './routes/test/index'
+import { Route as TestInputRouteImport } from './routes/test/input'
+import { Route as TestComboRouteImport } from './routes/test/combo'
+import { Route as TestApiTestsRouteImport } from './routes/test/api.tests'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestIndexRoute = TestIndexRouteImport.update({
+  id: '/test/',
+  path: '/test/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestInputRoute = TestInputRouteImport.update({
+  id: '/test/input',
+  path: '/test/input',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestComboRoute = TestComboRouteImport.update({
+  id: '/test/combo',
+  path: '/test/combo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestApiTestsRoute = TestApiTestsRouteImport.update({
+  id: '/test/api/tests',
+  path: '/test/api/tests',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/test/combo': typeof TestComboRoute
+  '/test/input': typeof TestInputRoute
+  '/test': typeof TestIndexRoute
+  '/test/api/tests': typeof TestApiTestsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/test/combo': typeof TestComboRoute
+  '/test/input': typeof TestInputRoute
+  '/test': typeof TestIndexRoute
+  '/test/api/tests': typeof TestApiTestsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/test/combo': typeof TestComboRoute
+  '/test/input': typeof TestInputRoute
+  '/test/': typeof TestIndexRoute
+  '/test/api/tests': typeof TestApiTestsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/test/combo' | '/test/input' | '/test' | '/test/api/tests'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/test/combo' | '/test/input' | '/test' | '/test/api/tests'
+  id:
+    | '__root__'
+    | '/'
+    | '/test/combo'
+    | '/test/input'
+    | '/test/'
+    | '/test/api/tests'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TestComboRoute: typeof TestComboRoute
+  TestInputRoute: typeof TestInputRoute
+  TestIndexRoute: typeof TestIndexRoute
+  TestApiTestsRoute: typeof TestApiTestsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +94,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/test/': {
+      id: '/test/'
+      path: '/test'
+      fullPath: '/test'
+      preLoaderRoute: typeof TestIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test/input': {
+      id: '/test/input'
+      path: '/test/input'
+      fullPath: '/test/input'
+      preLoaderRoute: typeof TestInputRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test/combo': {
+      id: '/test/combo'
+      path: '/test/combo'
+      fullPath: '/test/combo'
+      preLoaderRoute: typeof TestComboRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test/api/tests': {
+      id: '/test/api/tests'
+      path: '/test/api/tests'
+      fullPath: '/test/api/tests'
+      preLoaderRoute: typeof TestApiTestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TestComboRoute: TestComboRoute,
+  TestInputRoute: TestInputRoute,
+  TestIndexRoute: TestIndexRoute,
+  TestApiTestsRoute: TestApiTestsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
