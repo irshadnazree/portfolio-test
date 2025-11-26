@@ -12,7 +12,15 @@
 	"main": "@tanstack/react-start/server-entry",
 	"observability": {
 		"enabled": true
-	}
+	},
+	"d1_databases": [
+		{
+			"binding": "portfolio_test_db",
+			"database_name": "portfolio-test-db",
+			"database_id": "9e0b9088-e666-429e-91bf-70457257e813",
+			"remote": true
+		}
+	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
